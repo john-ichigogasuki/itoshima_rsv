@@ -7,6 +7,8 @@ session = requests.Session()
 
 # 最初のログイン遷移
 url_signin = "https://www.task-asp.net/cu/ykd402303/Top"
+response = session.get(url_signin)
+
 headers = {
     "Connection": "keep-alive",
     "Content-Length": "22984",
@@ -22,7 +24,7 @@ headers = {
     "Referer": "https://www.task-asp.net/cu/ykd402303/Top",
     "Accept-Encoding": "gzip, deflate, br, zstd",
     "Accept-Language": "ja",
-    "Cookie": "taskasp_cu_ykd_starturl=%2fcu%2feg%2fykd402303.task; taskasp_cu_ykd_sppage=1; taskasp_cu_ykd_sessionid=adufsolgpg2o1rz3d4ug5tsn",
+    # "Cookie": "taskasp_cu_ykd_starturl=%2fcu%2feg%2fykd402303.task; taskasp_cu_ykd_sppage=1; taskasp_cu_ykd_sessionid=adufsolgpg2o1rz3d4ug5tsn",
     "sec-ch-ua": '"Not/A)Brand";v="8", "Chromium";v="126", "Brave";v="126"',
     "sec-ch-ua-mobile": "?1",
     "sec-ch-ua-platform": "Android",
