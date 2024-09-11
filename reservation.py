@@ -13,6 +13,12 @@ response = session.get(url_signin)
 target_cookie = response.cookies.get_dict().get('taskasp_cu_ykd_sessionid', None)
 print(f'target_cookie: {target_cookie}')
 
+# Sign in process
+def signIn():
+    url_signin = 'https://www.task-asp.net/cu/ykd402303/Top'
+    response = session.get(url_signin)
+    
+
 headers = {
     # "Connection": "keep-alive",
     # "Cache-Control": "max-age=0",
