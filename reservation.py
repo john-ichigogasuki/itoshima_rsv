@@ -15,7 +15,8 @@ print(f'target_cookie: {target_cookie}')
 
 # Sign in process
 def signIn():
-    url_signin = 'https://www.task-asp.net/cu/ykd402303/Top'
+    # url_signin = 'https://www.task-asp.net/cu/ykd402303/Top'
+    url_signin = "https://www.task-asp.net/cu/eg/ykd402303.task"
     response = session.get(url_signin)
     
 
