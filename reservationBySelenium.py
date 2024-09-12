@@ -138,16 +138,5 @@ try:
     lineNotify("予約が完了しました。")
     
 except Exception as e:
-    
-    try:
-        getSignInUrl()
-        executeLogIn()
-        submitDetails()
-        reservation()
-        registration()
-        
-        lineNotify("予約が完了しています")
-    
-    except Exception as e2:
-        error_message = f"エラーにより予約が完了できていません。\n 詳細:\n{str(e2)} "
-        lineNotify(error_message)
+    error_message = f"エラーにより予約が完了できていません。\n 詳細:\n{str(e)} "
+    lineNotify(error_message)
