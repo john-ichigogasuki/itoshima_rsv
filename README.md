@@ -11,13 +11,13 @@
 
 #### 木曜日予約分
 30 8 * * 4 /path/to/cron/itoshimaRsv.sh
-===
+
 
 ### 環境変数
 - USERNAME: ログインID
 - PASSWORD: パスワード
 - LINE_ACCESS_TOKEN: プログラムの可否通知用のアクセストークン
-===
+
 
 ### 必要ライブラリ
 - Selenium
@@ -26,7 +26,7 @@
     LINE Notify使用のため
 - python-dotenv
     .envファイルに格納してある環境変数を読み込む
-===
+
 ### note
 Seleniumによる自動化のため、UI上操作となる。
 スリープ中の実行ができないため、Requestsを用いた自動予約システムに書き換えたいところ。
