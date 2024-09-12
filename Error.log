@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "/Users/john/Programs/johnmade/Python/itoshima_rsv/reservationBySelenium.py", line 1, in <module>
+    import os, requests
+ModuleNotFoundError: No module named 'requests'
+Traceback (most recent call last):
+  File "/Users/john/Programs/johnmade/Python/itoshima_rsv/reservationBySelenium.py", line 1, in <module>
+    import os, requests
+ModuleNotFoundError: No module named 'requests'
+Traceback (most recent call last):
+  File "/Users/john/Programs/johnmade/Python/itoshima_rsv/reservationBySelenium.py", line 1, in <module>
+    import os, requests
+ModuleNotFoundError: No module named 'requests'
