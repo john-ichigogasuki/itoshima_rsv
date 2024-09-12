@@ -1,5 +1,4 @@
-import os
-
+import os, requests
 from selenium import webdriver
 from time import sleep
 from datetime import datetime
@@ -120,11 +119,35 @@ def registration():
     
     finalConfirm_button = wait.until(EC.element_to_be_clickable((By.ID, "YoyakuButton")))
     finalConfirm_button.click()
-    sleep(5)
+    sleep(1)
+
+def lineNotify(message):
+    line_notify_token = os.getenv("LINE_ACCESS_TOKEN")
+    line_notify_api = 'https://notify-api.line.me/api/notify'
+    headers = {'Authorization': f'Bearer {line_notify_token}'}
+    requests.post(line_notify_api, headers = headers, data = {'message': message})
 
 
-getSignInUrl()
-executeLogIn()
-submitDetails()
-reservation()
-registration()
+try:
+    getSignInUrl()
+    executeLogIn()
+    submitDetails()
+    reservation()
+    registration()
+    
+    lineNotify("予約が完了しました。")
+    
+except Exception as e:
+    
+    try:
+        getSignInUrl()
+        executeLogIn()
+        submitDetails()
+        reservation()
+        registration()
+        
+        lineNotify("予約が完了しています")
+    
+    except Exception as e2:
+        error_message = f"エラーにより予約が完了できていません。\n 詳細:\n{str(e2)} "
+        lineNotify(error_message)
