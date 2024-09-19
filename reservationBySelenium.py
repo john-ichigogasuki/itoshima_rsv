@@ -38,17 +38,17 @@ def submitDetails():
     ####  事前準備  ####
     # ターゲットになる予約日程を取得する
     today = datetime.today()
-    three_month_later = today + relativedelta(months=2)
+    three_month_later = today + relativedelta(months=3)
     formatted_date = three_month_later.strftime('%Y%m%d')# YYYYMMDDに変換
     #### 事前準備 ####
     wait = WebDriverWait(driver, 10)
     open_schedule = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, "a.ui-collapsible-heading-toggle.ui-btn.ui-btn-icon-left.ui-btn-inherit.ui-icon-calendar")))
     open_schedule.click()
     sleep(0.2)
-    for _ in range(2):
+    for _ in range(3):
         next_month_button = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="MainContentPlaceHolder_SearchItemInput_UseDateCalendarPicker_UseDateCalendarPicker"]/table/tbody/tr[1]/td/table/tbody/tr/td[3]')))
         next_month_button.click()
-        sleep(0.2)
+        sleep(0.4)
     date_element = wait.until(EC.element_to_be_clickable((By.XPATH, f'//a[@class="lg-cal-date" and @data-lg-date="{formatted_date}"]')))
     date_element.click()
     ########## 日程の予約 ##########
@@ -128,15 +128,38 @@ def lineNotify(message):
     requests.post(line_notify_api, headers = headers, data = {'message': message})
 
 
-try:
-    getSignInUrl()
-    executeLogIn()
-    submitDetails()
-    reservation()
-    registration()
+# try:
+#     getSignInUrl()
+#     executeLogIn()
+#     submitDetails()
+#     reservation()
+#     registration()
     
-    lineNotify("予約が完了しました。")
+#     lineNotify("予約が完了しました。")
     
-except Exception as e:
-    error_message = f"エラーにより予約が完了できていません。\n 詳細:\n{str(e)} "
-    lineNotify(error_message)
+# except Exception as e:
+#     error_message = f"エラーにより予約が完了できていません。\n 詳細:\n{str(e)} "
+#     lineNotify(error_message)
+    
+max_retries = 3  # 試行回数を設定
+
+for attempt in range(max_retries):
+    try:
+        getSignInUrl()
+        executeLogIn()
+        submitDetails()
+        reservation()
+        registration()
+        
+        lineNotify("予約が完了しました。")
+        break  # 成功した場合はループを抜ける
+        
+    except Exception as e:
+        if attempt < max_retries - 1:
+            # リトライを行うが、エラーメッセージを表示してリトライを通知
+            message = f"エラーが発生しました。再試行します。試行回数: {attempt + 1}/{max_retries}"
+            lineNotify(message)
+        else:
+            # 3回目の失敗でエラーメッセージを出力
+            error_message = f"エラーにより予約が完了できていません\n試行回数: {attempt+1}\n詳細:\n{str(e)} "
+            lineNotify(error_message)
