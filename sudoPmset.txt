@@ -1,0 +1,18 @@
+#!/bin/zsh
+
+PASSWORD=""
+
+echo $PASSWORD | sudo -S pmset sleepnow
+
+
+echo $PASSWORD |sudo -S pmset repeat wake MTWRFSU 21:48:55
+
+sleep 10
+
+echo "executed" >> "/Users/john/Programs/cron/logfile.log"
+
+echo $PASSWORD | sudo -S pmset sleepnow
+
+
+みたいな文章を書く
+Sudoで直接記述するの危ないので、visudoを使って、pmsetからPW除外がいいみたい
