@@ -30,11 +30,16 @@ echo "対象日の曜日: $TARGET_DAY_NAME" >> $LOG_FILE
 # 水曜日(3)と木曜日(4)であれば実行
 if [[ "$TARGET_DAY_OF_WEEK" == "3" || "$TARGET_DAY_OF_WEEK" == "4" ]]; then
     echo ">>> 指定曜日（$TARGET_DAY_NAME）のため、Pythonスクリプトを実行しました。" >> $LOG_FILE
+    
+    sudo pmset schedule wake "now"
+
     source /path/to//venv/bin/activate
 
     /path/to/python /path/to/reservationBySelenium.py >> /path/to/logfile.log 2>> /path/to/Error.log  >> $LOG_FILE 2>&1
 
     deactivate
+
+    sudo pmset sleepnow
 else
     echo ">>> 対象日の曜日は $TARGET_DAY_NAME です。指定された曜日（水曜日または木曜日）ではないため、スクリプトは実行されませんでした。" >> $LOG_FILE
 fi
