@@ -15,4 +15,4 @@ echo $PASSWORD | sudo -S pmset sleepnow
 
 
 みたいな文章を書く
-Sudoで直接記述するの危ないので、visudoを使って、pmsetからPW除外がいいみたい
+Sudoで直接記述するの危ないので、visudoを使って、pmsetからPW除外がいいみたいK10931219126273y
