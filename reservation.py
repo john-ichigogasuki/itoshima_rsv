@@ -4,7 +4,8 @@ from dotenv import load_dotenv
 session = requests.Session()
 load_dotenv()
 
-login_url = "https://www.task-asp.net/cu/ykd402303/Information"
+login_url = "https://www.task-asp.net/cu/ykd402303/Top"
+# login_url = "https://www.task-asp.net/cu/ykd402303/Information"
 
 headers = {
     "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8",
